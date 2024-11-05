@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 async function DBconn() {
-    return  await mongoose.connect('mongodb://127.0.0.1:27017/BlogIT')
+    return  await mongoose.connect(process.env.MONGO_URL)
     .then(()=>{
         console.log('db conn success')
     })

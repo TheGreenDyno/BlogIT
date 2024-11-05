@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+        <title>Blog Post</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <%- include('./partials/nav') %>
+
+        <div class="container mt-5">
+            <!-- Blog content section -->
+            <div class="row mb-4">
+                <div class="col-md-8 mx-auto text-center">
+                    <img src="<%= blog.coverImageURL %>" alt="Blog Cover Image" class="img-fluid rounded mb-4"
+                        style="max-height: 400px; width: 100%; object-fit: cover;">
+                    <h1 class="display-4 mb-3">
+                        <%= blog.title %>
+                    </h1>
+                    <h5 class="text-muted">Created by: <%= blog.createdBy.fullName %>
+                    </h5>
+                    <pre class="text-justify"
+                        style="white-space: pre-wrap; font-size: 1.1rem;"><%= blog.content %></pre>
+                </div>
+            </div>
+
+            <!-- Comment form and list -->
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <h3>Comments (<%= comments.length %>)</h3>
+
+                    <!-- Comment form -->
+                    <form action="/blog/comment/<%= blog._id %>" method="POST" class="mb-4">
+                        <div class="form-group">
+                            <textarea class="form-control" name="comment" rows="3" placeholder="Comment here..."
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </form>
+
+                    <!-- Comments section -->
+                    <div>
+                        <% if (comments.length> 0) { %>
+                            <% comments.forEach(comment=> { %>
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= comment.createdBy.fullName %>
+                                        </h5>
+                                        <p class="card-text">
+                                            <%= comment.comment %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <% }) %>
+                                    <% } else { %>
+                                        <p class="text-muted">No comments yet. Be the first to comment!</p>
+                                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('./partials/scripts') %>
+</body>
+
+</html>

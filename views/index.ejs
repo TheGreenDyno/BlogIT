@@ -3,12 +3,24 @@
 
 <head>
     <%- include('./partials/head') %>
-    <title>BlogIT</title>
+        <title>BlogIT</title>
 </head>
 
 <body>
     <%- include('./partials/nav') %>
-    <h1>welcome</h1>
+        <div class="container text-center my-5 py-5">
+            <h1 class="display-4 fw-bold text-primary mb-3">Welcome to BlogIT</h1>
+
+            <p class="lead text-secondary px-3">
+                BlogIT.... A blogging platform dedicated to tech enthusiasts and IT professionals.
+                Here, users can share insights, ideas, and the latest trends in the world of technology.
+                Whether you're an experienced developer or new to the tech space, BlogIT is the place to explore,
+                learn, and connect through engaging and informative content.
+            </p>
+
+            <a href="/home" class="btn btn-primary btn-lg mt-4">See Blogs</a>
+        </div>
 </body>
+<%- include('./partials/scripts') %>
 
 </html>

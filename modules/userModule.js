@@ -21,16 +21,13 @@ const schema = mongoose.Schema({
         enum: ['USER', 'ADMIN'],
         default: 'USER'
     }
-},{timestamps: true})
+}, { timestamps: true })
 
 schema.pre('save', async function (next) {
     if (!this.isModified('password')) return
 
-    //genertaing hash
-    console.log(`before hasing: ${this.password}`)
+    //genertaing hash..........    
     this.password = await hashPassword(this.password)
-    console.log(`after hasing: ${this.password}`)
-    
     next()
 })
 
